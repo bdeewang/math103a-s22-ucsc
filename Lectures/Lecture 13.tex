@@ -1,0 +1,188 @@
+\vspace*{1em}
+
+Some examples involving a branch of a multi-valued function. 
+
+\begin{example}\hfill
+\begin{itemize}[itemsep=1.5em]
+\item[(4)] Integrate the branch of square root \[f(z) = z^{1/2} = e^{(1/2)\log z},\quad \abs{z}>0,\ 0 < \arg z < 2\pi\] over the contour
+\[\begin{tikzpicture}[scale=1.4]
+    \draw[<-,thick] (-1.75,0)--(0,0);
+	\draw[<->,thick] (0,-0.5)--(0,1.75);
+    \begin{scope}
+        \node[label=right:{$C$}](A) at (1,1) {};
+        \node[label=below:{$-R$}](B) at (-1.25,0) {};
+        \node[label=below:{$R$}](C) at (1.25,0) {};
+        \draw[use Hobby shortcut,clockwise arrows,thick]
+	(-1.25,0) .. (0,1.25) .. (1.25,0);
+    \end{scope}
+	\draw[->,thick,dashed,firebrick] (0,0)--(1.75,0);
+    \draw [firebrick,fill=white] (0,0) circle (1.3pt);
+    \draw [fill=black] (B) circle (1.3pt);
+    \draw [fill=black] (C) circle (1.3pt);
+\end{tikzpicture}\]
+\[C:\ z(t) = Re^{it},\quad R>0,\ 0 \leq t \leq \pi\]
+Note that $f(z)$ is not defined at the initial point $z = R$ of the contour $C$ as $\arg R = 0$, that is, $f(z(t))$ is not defined for $t = 0$. The integral
+\[\int_C\,f(z)\ dz = \int_0^{\pi}\,f(z(t))\,z'(t)\ dt\]
+nevertheless exists as the integrand $f(z(t))\,z'(t)$ is piecewise continuous on $[0,\pi]$. To see this, we note that for $0 < t \leq \pi$
+\allowdisplaybreaks
+\begin{align*}
+f(z(t))\,z'(t) = e^{(1/2)\log Re^{it}}Rie^{it} &= iRe^{(\ln R + it)/2}e^{it}\\[0.5em]
+ &= iR(R^{1/2}e^{it/2})e^{it}\\[0.5em]
+ &= iR^{3/2}e^{3it/2}\\[0.5em]
+ &= iR^{3/2}\left(\cos\frac{3t}{2} + i\sin\frac{3t}{2}\right) = R^{3/2}\left(-\sin\frac{3t}{2} + i\cos\frac{3t}{2}\right)
+\end{align*}
+The right hand limits of the real and imaginary parts of $f(z(t))\,z'(t)$ at $t = 0$ exist, and equal $0$ and $R^{3/2}$. Therefore, $f(z(t))\,z'(t)$ is continuous on $[0,\pi]$ with its value at $t = 0$ defined as $iR^{3/2}$. Hence, 
+\begin{align*}
+\int_C\,f(z)\ dz = \int_0^{\pi}\,f(z(t))\,z'(t)\ dt &= \int_0^{\pi}\,iR^{3/2}e^{3it/2}\ dt\\[0.5em]
+&= iR^{3/2}\int_0^{\pi}\,e^{3it/2}\ dt\\[0.5em]
+&= iR^{3/2}\Bigg[\frac{e^{3it/2}}{3i/2}\Bigg]_0^{\pi}\\[0.5em]
+&= \frac{2}{3}R^{3/2}\left(e^{3\pi i/2} - e^0\right) = \frac{2}{3}R^{3/2}\left(-i - 1\right) = -\frac{2}{3}R^{3/2}\left(1 + i\right)
+\end{align*}
+
+\item[(5)] Integrate the principal branch of \[f(z) = z^{i-1} = e^{(i - 1)\plog z},\quad \abs{z}>0,\ -\pi < \parg z < \pi\] over the contour
+\[\begin{tikzpicture}[scale=1.4]
+    \draw[<-,thick] (1.75,0)--(0,0);
+	\draw[<->,thick] (0,1.75)--(0,-1.75);
+    \begin{scope}
+        \node[label=right:{$C$}](A) at (1,1) {};
+        \draw[use Hobby shortcut,clockwise arrowsend,thick]
+	(-1.234,0.2) .. (0,1.25) .. (1.25,0) .. (0,-1.25) .. (-1.25,0);
+    \end{scope}
+	\draw[->,thick,dashed,firebrick] (0,0)--(-1.75,0);
+    \draw [fill=black] (-1.25,0) circle (1.3pt);
+    \draw [firebrick,fill=white] (0,0) circle (1.3pt);
+\end{tikzpicture}\]
+\[C:\ z(t) = e^{it},\quad R>0,\ -\pi \leq t \leq \pi\]
+Since the curve crosses the branc cut, we need to check if integrand $f(z(t))\,z'(t)$ is piecewise continuous on $[-\pi,\pi]$. To see this, we note that for $-\pi < t \leq \pi$
+\begin{align*}
+f(z(t))\,z'(t) = e^{(i - 1)\plog e^{it}}ie^{it} &= ie^{(i-1)(\ln 1 + it)}e^{it}\\[0.5em]
+ &= ie^{(i-1)it}e^{it}\\[0.5em]
+ &= ie^{(i - 1)it + it} = ie^{i^2t} = ie^{-t}
+\end{align*}
+The right hand limits of the real and imaginary parts of $f(z(t))\,z'(t)$ at $t = \pi$ exist, and equal $0$ and $e^{-\pi}$. Therefore, $f(z(t))\,z'(t)$ is continuous on $[-\pi,\pi]$ with its value at $t = -\pi$ defined as $ie^{-\pi}$. Hence, 
+\begin{align*}
+\int_C\,f(z)\ dz = \int_{-\pi}^{\pi}\,f(z(t))\,z'(t)\ dt &= \int_{-\pi}^{\pi}\,ie^{-t}\ dt\\[0.5em]
+&= i\int_{-\pi}^{\pi}\,e^{-t}\ dt\\[0.5em]
+&= i\Big[-e^{-t}\Big]_{-\pi}^{\pi}\\[0.5em]
+&= i\left(-e^{-\pi} - (-e^{-(-\pi)})\right)\\[0.5em]
+&= i\left(e^{\pi}-e^{-\pi}\right)
+\end{align*}
+\end{itemize}
+\end{example}
+
+\vspace*{2em}
+
+\begin{mdframed}
+\begin{center}
+{\Large Estimating Contour Integrals}
+\end{center}
+\end{mdframed}
+
+\begin{lemma}[Triangle Inequality for Integrals]\label{intriineq}
+Suppose $\gamma:[a,b] \to \cc$ is piecewise continuous. Then
+\[\abs{\int_a^b\,\gamma(t)\ dt} \leq \int_a^b\abs{\gamma(t)}dt\]
+\end{lemma}
+\begin{proof}
+Let's first assume 
+\[\int_a^b\,\gamma(t)\ dt = 0,\]
+then the lemma holds as $\abs{\gamma(t)} \geq 0$ for all $t \in [a,b]$ and so its integral is non-negative. Otherwise, let \[r_0e^{it_0} = \int_a^b\,\gamma(t)\ dt \neq 0.\] Then,
+\begin{align*}
+\abs{\int_a^b\,\gamma(t)\ dt} = |r_0e^{it_0}| = r_0 = \Re r_0 &= \Re (r_0e^{it_0}e^{-it_0})\\[0.5em]
+&= \Re \left(e^{-it_0}\int_a^b\,\gamma(t)\ dt\right)\\[0.5em]
+&= \Re \left(\int_a^b\,e^{-it_0}\gamma(t)\ dt\right)\\[0.5em]
+&= \int_a^b\,\Re (e^{-it_0}\gamma(t))\ dt\\[0.5em]
+&\leq \int_a^b\,|e^{-it_0}\gamma(t)|\ dt,\ \text{using Discussion \ref{cmplxnorm}}\\[0.5em]
+&= \int_a^b\,|e^{-it_0}|\abs{\gamma(t)}\ dt\\[0.5em]
+&= \int_a^b\abs{\gamma(t)} dt\\[-3em]
+\end{align*}
+\end{proof}
+
+\vspace*{1em}
+
+\begin{theorem}[Bound for Contour Integrals]\label{contourtriineq}
+Suppose that $C$ is a contour of length $L$ and $f$ is piecewise continuous on $C$. Then
+\[\abs{\int_C\,f(z)\ dz} \leq \max_{z \in C}\abs{f(z)} \cdot L(C)\]
+\end{theorem}
+\begin{proof}
+Suppose $z:[a,b] \to \cc$ parametrises $C$. By assumption $f(z(t))$ is piecewise continuous on $[a,b]$. Hence, $\max_{z \in C}\abs{f(z)} = \max_{t \in [a,b]}\abs{f(z(t))}$ is finite as $f(z(t))$ is continuous on a closed and bounded interval. Thus,
+\begin{align*}
+\abs{\int_C\,f(z)\ dz} &= \abs{\int_a^b\,f(z(t))\,z'(t)\ dz}\\[0.5em]
+ &\leq \int_a^b\abs{f(z(t))\,z'(t)}\, dz,\ \text{by Lemma \ref{intriineq}}\\[0.5em]
+ &= \int_a^b\abs{f(z(t))}\abs{z'(t)}\, dz\\[0.5em]
+ &\leq \int_a^b\max_{t \in [a,b]}\abs{f(z(t))}\abs{z'(t)}\, dz\\[0.5em]
+ &= \max_{t \in [a,b]}\abs{f(z(t))}\int_a^b\abs{z'(t)}\, dz = \max_{t \in [a,b]}\abs{f(z(t))}\cdot L(C) = \max_{z \in C}\abs{f(z)}\cdot L(C)\\[-3em]
+\end{align*}
+\end{proof}
+
+%\vspace*{1em}
+
+\begin{example}\hfill
+\begin{itemize}
+\item[(1)] Finding a bound for
+\[\int_C\frac{z^2 + 1}{z^3 + 2}\ dz,\]
+where $C$ is the semicircle $z(t) = 2e^{it},\ 0 \leq t \leq \pi$.\\
+\\
+All we need to find is an $M > 0$ such that, for all $z \in C$
+\[\abs{\frac{z^2 + 1}{z^2 + 3}} \leq M,\qquad \text{because then}\quad\max_{z \in C}\abs{\frac{z^2 + 1}{z^2 + 3}} \leq M\]
+Suppose $z \in C$, then $\abs{z} = 2$, and therefore
+\[|z^2 + 1| \leq \abs{z}^2 + 1 = 5;\]
+also,
+\[|z^3 + 2| \geq |\abs{z}^3 - 2| = |2^3 - 2| = 6.\]
+Together, we get, for any $z \in C$
+\[\abs{\frac{z^2 + 1}{z^2 + 3}} \leq \frac{5}{6}.\]
+Hence, 
+\[\abs{\int_C\frac{z^2 + 1}{z^3 + 2}\ dz} \leq \max_{z \in C}\abs{\frac{z^2 + 1}{z^2 + 3}}\cdot L(C) \leq \frac{5}{6}\cdot L(C) = \frac{5}{6}\cdot 2\pi = \frac{5\pi}{3}\]
+
+\item[(2)] Show that
+\[\lim_{R \to \infty}\int_{C_R}\frac{z^2 + z}{z^4 + 2z^2 + 1}\ dz = 0,\]
+where $C_R$ is the semicircle $z(t) = Re^{it},\ 0 \leq t \leq 2\pi$. Note that $L(C) = 2\pi R$.\\
+\\
+Let $z \in C_R$, then $\abs{z} = R$, and therefore
+\[|z^2 + z| \leq \abs{z}^2 + z = R^2 + R;\]
+also,
+\[|z^4 + 2z^2 + 1| \geq |(z^2 + 1)| = |z^2 + 1|^2 \geq ||z|^2 - 1|^2 = |R^2 - 1|^2 = (R^2 - 1)^2.\]
+Together, we get, for any $z \in C$ and $R > 1$
+\[\abs{\frac{z^2 + z}{z^4 + 2z^2 + 1}} \leq \frac{R^2 + R}{(R^2 - 1)^2}.\]
+Hence, 
+\[\abs{\int_{C_R}\frac{z^2 + z}{z^4 + 2z^2 + 1}\ dz} \leq \frac{R^2 + R}{(R^2 - 1)^2}\cdot 2\pi R  \to 0,\ \text{as } R \to \infty\]
+Therefore,
+\[\lim_{R \to \infty}\int_{C_R}\frac{z^2 + z}{z^4 + 2z^2 + 1}\ dz = 0,\]
+by the Sandwich theorem.
+\end{itemize}
+\end{example}
+
+%\vspace*{1em}
+
+\begin{example}[in-class]
+Finding a bound for
+\[\int_C\frac{z^2 - 1}{z^4 + 2}\ dz,\]
+where $C$ is the sector $z(t) = 5e^{it},\ \pi/4 \leq t \leq 3\pi/4$.
+\end{example}
+\begin{proof}[Answer]
+Let's first compute $L(C)$. We first note that $z'(t) = i5e^{it}$, therefore,
+\begin{align*}
+L(C) &= \int_{\pi/4}^{3\pi/4}\,\abs{z'(t)}\ dt\\[1em] 
+ &= \int_{\pi/4}^{3\pi/4}\,\abs{5ie^{it}}\ dt\\[1em]
+ &= \int_{\pi/4}^{3\pi/4}\,5\ dt\\[1em]
+ &= 5\int_{\pi/4}^{3\pi/4}\,dt\\[1em]
+ &= 5\left(\frac{3\pi}{4} - \frac{\pi}{4}\right)\\[1em]
+ &= \frac{5\pi}{2}
+\end{align*}
+Now, suppose $z \in C$, then $\abs{z} = 5$, and therefore
+\[|z^2 - 1| \leq \abs{z^2} + \abs{-1} = \abs{z}^2 + 1 = 26;\]
+also,
+\[|z^4 + 2| \geq |\abs{z^4} - \abs{2}| = |\abs{z}^4 - 2| = 623.\]
+Together, we get, for any $z \in C$
+\[\abs{\frac{z^2 - 1}{z^4 + 2}} \leq \frac{26}{623},\quad \text{hence }\max_{z \in C}\abs{\frac{z^2 - 1}{z^4 + 2}} \leq \frac{26}{623}\]
+Hence, 
+\[\abs{\int_C\frac{z^2 - 1}{z^4 + 2}\ dz} \leq \max_{z \in C}\abs{\frac{z^2 - 1}{z^4 + 2}}\cdot L(C) \leq \frac{26}{623}\cdot L(C) = \frac{26}{623}\cdot \frac{5\pi}{2} = \frac{65\pi}{623}\]
+\end{proof}
+
+\vspace*{2em}
+
+\subsection{Problems}
+\vspace{0.1in}
+To be added
+%\begin{problem}\label{prob 12.1}
+%
+%\end{problem}
